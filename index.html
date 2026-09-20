@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOOLAP — Technology</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  color:#1d1d1f;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+  "Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(90,200,250,.28),transparent 28%),
+    radial-gradient(circle at 88% 24%,rgba(175,82,222,.18),transparent 30%),
+    #f5f5f7;
+  overflow-x:hidden;
+}
+
+.nav{
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10;
+  width:min(92%,920px);
+  height:58px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border:1px solid rgba(255,255,255,.7);
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(24px);
+  border-radius:30px;
+  box-shadow:0 12px 45px #00000018;
+}
+
+.logo{
+  font-weight:700;
+  font-size:17px;
+}
+
+.logo span{
+  color:#007aff;
+}
+
+.nav a{
+  color:#1d1d1f;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
+  margin:0 9px;
+  transition:.2s;
+}
+
+.nav a:hover,
+.nav a.active{
+  color:#007aff;
+}
+
+.hero{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:120px 20px 80px;
+}
+
+.content{
+  max-width:900px;
+}
+
+.badge{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:9px 14px;
+  border-radius:999px;
+  background:#ffffffa6;
+  border:1px solid #00000012;
+  color:#4b4b50;
+  font-size:13px;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#30d158;
+  box-shadow:0 0 14px #30d158;
+}
+
+h1{
+  margin:24px auto 18px;
+  font-size:clamp(40px,7vw,82px);
+  line-height:1.08;
+  letter-spacing:-.025em;
+  background:linear-gradient(120deg,#111,#007aff 52%,#af52de);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.lead{
+  max-width:650px;
+  margin:auto;
+  color:#6e6e73;
+  font-size:18px;
+  line-height:1.7;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+
+button{
+  border:0;
+  border-radius:999px;
+  padding:14px 22px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  min-height:48px;
+  color:white;
+  background:#007aff;
+  box-shadow:0 8px 30px #007aff59;
+  transition:.25s;
+}
+
+button:hover{
+  transform:translateY(-3px);
+}
+
+button.secondary{
+  background:#ffffffb8;
+  border:1px solid #00000012;
+  box-shadow:none;
+  color:#1d1d1f;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  max-width:1050px;
+  margin:0 auto 100px;
+  padding:0 20px;
+}
+
+.card{
+  min-height:240px;
+  padding:26px;
+  border-radius:28px;
+  background:#ffffffad;
+  border:1px solid #00000012;
+  backdrop-filter:blur(22px);
+  box-shadow:0 20px 70px #0000001a;
+  transition:.4s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+}
+
+.icon{
+  font-size:36px;
+  margin-bottom:20px;
+}
+
+.card h2{
+  font-size:20px;
+}
+
+.card p,
+.section-copy{
+  color:#6e6e73;
+  line-height:1.65;
+}
+
+.section{
+  padding:120px 20px;
+  max-width:1120px;
+  margin:auto;
+  text-align:center;
+}
+
+.eyebrow{
+  font-size:14px;
+  color:#6e6e73;
+  letter-spacing:.08em;
+  margin-bottom:14px;
+}
+
+.section h2{
+  font-size:clamp(36px,6vw,68px);
+  line-height:1.08;
+  letter-spacing:-.04em;
+}
+
+.feature{
+  margin-top:55px;
+  min-height:450px;
+  border-radius:38px;
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,#ffffffe6,#ebebf0a6);
+  box-shadow:0 35px 100px #0000001f;
+}
+
+.orb{
+  width:210px;
+  height:210px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 25%,#fff 0,#a9e7ff 12%,
+    #007aff 48%,#5e5ce6 75%,#111 100%);
+  box-shadow:0 0 80px #007aff80;
+  animation:float 6s ease-in-out infinite;
+}
+
+.specs{
+  position:absolute;
+  bottom:28px;
+  left:35px;
+  right:35px;
+  display:flex;
+  justify-content:space-between;
+  color:#6e6e73;
+  font-size:13px;
+}
+
+.specs strong{
+  display:block;
+  color:#1d1d1f;
+  font-size:17px;
+  margin-top:4px;
+}
+
+footer{
+  text-align:center;
+  color:#8e8e93;
+  padding:30px;
+}
+
+@keyframes float{
+  50%{
+    transform:translateY(-18px) scale(1.04);
+  }
+}
+
+@media(max-width:700px){
+
+  .nav{
+    height:54px;
+  }
+
+  .nav a{
+    display:none;
+  }
+
+  .hero{
+    padding:105px 14px 70px;
+  }
+
+  h1{
+    font-size:clamp(40px,12.5vw,62px);
+  }
+
+  .lead{
+    font-size:16px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .section{
+    padding:95px 18px;
+  }
+
+  .specs{
+    left:20px;
+    right:20px;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .specs strong{
+    font-size:14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+
+  <div class="logo">
+     <span>HOOLAP</span>
+  </div>
+
+  <div>
+    <a href="#home" class="active">Home</a>
+    <a href="#features">Channel</a>
+    <a href="#about">About</a>
+  </div>
+
+</nav>
+
+
+<main id="home" class="hero">
+
+  <div class="content">
+
+    <div class="badge">
+      <span class="dot"></span>
+      Apple · Samsung · Tech
+    </div>
+
+    <h1>
+      HOOLAP<br>
+      Technology.
+    </h1>
+
+    <p class="lead">
+      Apple과 Samsung을 중심으로 스마트폰과 IT 제품의 소식,
+      팁, 비교와 리뷰를 소개하는 테크 채널입니다.
+    </p>
+
+    <div class="buttons">
+
+      <button onclick="window.open(
+      'https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr',
+      '_blank')">
+        YouTube 보기
+      </button>
+
+      <button class="secondary" onclick="window.open(
+      'https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr',
+      '_blank')">
+        Instagram 보기
+      </button>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<section id="features" class="cards">
+
+  <article class="card">
+
+    <div class="icon">▶️</div>
+
+    <h2>YouTube</h2>
+
+    <p>
+      새로운 Apple·Samsung 소식과 유용한 IT 팁,
+      제품 비교와 리뷰를 영상으로 만나보세요.
+    </p>
+
+    <button onclick="window.open(
+    'https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr',
+    '_blank')">
+      채널 방문
+    </button>
+
+  </article>
+
+
+  <article class="card">
+
+    <div class="icon">◎</div>
+
+    <h2>Instagram</h2>
+
+    <p>
+      짧고 빠르게 보는 테크 소식과 HOOLAP의
+      다양한 콘텐츠를 확인할 수 있습니다.
+    </p>
+
+    <button onclick="window.open(
+    'https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr',
+    '_blank')">
+      계정 방문
+    </button>
+
+  </article>
+
+
+  <article class="card">
+
+    <div class="icon"></div>
+
+    <h2>Tech Focus</h2>
+
+    <p>
+      깔끔한 디자인과 실제 사용 경험을 바탕으로
+      재미있게 IT 이야기를 전합니다.
+    </p>
+
+  </article>
+
+</section>
+
+
+<section class="section">
+
+  <div class="eyebrow">
+    ABOUT HOOLAP
+  </div>
+
+  <h2>
+    Technology.<br>
+    Simply explained.
+  </h2>
+
+  <p class="section-copy">
+    복잡한 IT 이야기를 깔끔하고 이해하기 쉽게.
+    HOOLAP은 스마트폰과 태블릿, 워치 등
+    다양한 기술 이야기를 소개합니다.
+  </p>
+
+
+  <div class="feature">
+
+    <div class="orb"></div>
+
+    <div class="specs">
+
+      <div>
+        DESIGN
+        <strong>Liquid</strong>
+      </div>
+
+      <div>
+        MOTION
+        <strong>60 FPS feel</strong>
+      </div>
+
+      <div>
+        EXPERIENCE
+        <strong>Intuitive</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section" id="about">
+
+  <div class="eyebrow">
+    FOLLOW HOOLAP
+  </div>
+
+  <h2>
+    Stay curious.<br>
+    Stay connected.
+  </h2>
+
+  <p class="section-copy">
+    YouTube에서 영상을 보고,
+    Instagram에서 더 빠른 소식을 만나보세요.
+  </p>
+
+  <div class="buttons">
+
+    <button onclick="window.open(
+    'https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr',
+    '_blank')">
+      YouTube
+    </button>
+
+    <button class="secondary" onclick="window.open(
+    'https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr',
+    '_blank')">
+      Instagram
+    </button>
+
+  </div>
+
+</section>
+
+
+<footer>
+  Made for a little experiment · 2026
+</footer>
+
+
+<script>
+
+document.querySelectorAll('.nav a').forEach(a => {
+
+  a.addEventListener('click', () => {
+
+    document
+      .querySelectorAll('.nav a')
+      .forEach(x => x.classList.remove('active'));
+
+    a.classList.add('active');
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
