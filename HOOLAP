@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOOLAP</title>
+
+<style>
+
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+html {
+ scroll-behavior: smooth;
+}
+
+body {
+ font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+ "Segoe UI", Arial, sans-serif;
+ color: #1d1d1f;
+ background: #f7f9fc;
+ overflow-x: hidden;
+}
+
+a {
+ text-decoration: none;
+ color: inherit;
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+.nav-wrap {
+ position: fixed;
+ top: 18px;
+ left: 50%;
+ transform: translateX(-50%);
+ width: calc(100% - 32px);
+ max-width: 1150px;
+ z-index: 1000;
+ transition: .4s ease;
+}
+
+.nav {
+ height: 64px;
+ padding: 0 28px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+
+ border-radius: 35px;
+
+ background: rgba(255,255,255,.78);
+ border: 1px solid rgba(255,255,255,.9);
+
+ backdrop-filter: blur(20px);
+ -webkit-backdrop-filter: blur(20px);
+
+ box-shadow: 0 10px 35px rgba(0,0,0,.07);
+
+ transition: .4s ease;
+}
+
+.nav-logo {
+ font-size: 20px;
+ font-weight: 700;
+}
+
+.nav-links {
+ display: flex;
+ gap: 28px;
+}
+
+.nav-links a {
+ font-size: 15px;
+ font-weight: 600;
+ color: #1d1d1f;
+ transition: .25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+ color: #007aff;
+}
+
+.nav-wrap.compact {
+ top: 9px;
+ max-width: 980px;
+}
+
+.nav-wrap.compact .nav {
+ height: 50px;
+ padding: 0 22px;
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+.hero {
+ min-height: 100vh;
+ padding: 150px 25px 100px;
+
+ display: flex;
+ align-items: center;
+ justify-content: center;
+
+ text-align: center;
+
+ background:
+ radial-gradient(
+  circle at 15% 25%,
+  rgba(0,160,255,.18),
+  transparent 35%
+ ),
+ radial-gradient(
+  circle at 85% 30%,
+  rgba(130,90,255,.16),
+  transparent 35%
+ ),
+ linear-gradient(
+  135deg,
+  #f7fbff,
+  #fff,
+  #faf8ff
+ );
+}
+
+.hero-content {
+ width: 100%;
+ max-width: 1100px;
+}
+
+.badge {
+ display: inline-block;
+
+ padding: 10px 17px;
+
+ border-radius: 30px;
+
+ background: rgba(255,255,255,.75);
+ border: 1px solid rgba(255,255,255,.9);
+
+ box-shadow: 0 8px 25px rgba(0,0,0,.05);
+
+ color: #555;
+ font-size: 14px;
+}
+
+.hero h1 {
+ margin-top: 35px;
+
+ font-size: clamp(60px,13vw,150px);
+ line-height: .92;
+
+ letter-spacing: -.07em;
+ font-weight: 800;
+
+ background:
+ linear-gradient(
+  110deg,
+  #07518f,
+  #007aff,
+  #7055e8
+ );
+
+ -webkit-background-clip: text;
+ background-clip: text;
+
+ color: transparent;
+}
+
+.lead {
+ max-width: 720px;
+
+ margin: 35px auto 0;
+
+ color: #707070;
+
+ font-size: 18px;
+ line-height: 1.75;
+}
+
+.buttons {
+ margin-top: 35px;
+
+ display: flex;
+ justify-content: center;
+
+ gap: 14px;
+}
+
+.button {
+ display: inline-flex;
+
+ justify-content: center;
+ align-items: center;
+
+ min-width: 165px;
+
+ padding: 15px 23px;
+
+ border-radius: 30px;
+
+ font-weight: 700;
+
+ transition: .3s ease;
+}
+
+.button:hover {
+ transform: translateY(-3px);
+}
+
+.primary {
+ color: white;
+
+ background: #007aff;
+
+ box-shadow:
+ 0 10px 25px rgba(0,122,255,.25);
+}
+
+.secondary {
+ background: white;
+
+ border: 1px solid #eee;
+}
+
+
+/* =========================
+   HOME 처음 들어올 때 애니메이션
+========================= */
+
+.hero .badge,
+.hero h1,
+.hero .lead,
+.hero .buttons {
+ opacity: 1;
+ transform: translateY(0);
+ filter: blur(0);
+}
+
+
+/* 페이지 진입 후 실행 */
+
+.hero.start .badge {
+ animation:
+  homeIn .8s cubic-bezier(.22,1,.36,1)
+  .05s both;
+}
+
+.hero.start h1 {
+ animation:
+  homeIn .95s cubic-bezier(.22,1,.36,1)
+  .15s both;
+}
+
+.hero.start .lead {
+ animation:
+  homeIn .85s cubic-bezier(.22,1,.36,1)
+  .30s both;
+}
+
+.hero.start .buttons {
+ animation:
+  homeIn .85s cubic-bezier(.22,1,.36,1)
+  .45s both;
+}
+
+
+@keyframes homeIn {
+
+ 0% {
+  opacity: 0;
+  transform: translateY(45px);
+  filter: blur(8px);
+ }
+
+ 100% {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+ }
+
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section:not(.hero) {
+ padding: 140px 20px;
+}
+
+.container {
+ width: min(1100px,100%);
+ margin: auto;
+}
+
+.section-title {
+ text-align: center;
+
+ font-size: clamp(40px,6vw,70px);
+
+ letter-spacing: -.06em;
+ line-height: 1.05;
+}
+
+.section-text {
+ max-width: 680px;
+
+ margin: 25px auto 55px;
+
+ text-align: center;
+
+ color: #707070;
+
+ font-size: 17px;
+ line-height: 1.7;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards {
+ display: grid;
+
+ grid-template-columns:
+ repeat(3,1fr);
+
+ gap: 22px;
+}
+
+.card {
+ min-height: 270px;
+
+ padding: 32px;
+
+ display: flex;
+
+ flex-direction: column;
+
+ justify-content: space-between;
+
+ border-radius: 30px;
+
+ background: rgba(255,255,255,.75);
+
+ border: 1px solid rgba(255,255,255,.9);
+
+ box-shadow:
+ 0 15px 45px rgba(0,0,0,.06);
+
+ transition: .3s ease;
+}
+
+.card:hover {
+ transform: translateY(-7px);
+
+ box-shadow:
+ 0 25px 55px rgba(0,0,0,.1);
+}
+
+.icon {
+ width: 52px;
+ height: 52px;
+
+ display: flex;
+
+ align-items: center;
+ justify-content: center;
+
+ border-radius: 16px;
+
+ background: #f1f2f6;
+
+ font-size: 23px;
+}
+
+.card h3 {
+ margin-top: 20px;
+
+ font-size: 25px;
+}
+
+.card p {
+ margin-top: 10px;
+
+ color: #777;
+
+ line-height: 1.6;
+}
+
+.card .button {
+ margin-top: 25px;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+ background:
+ linear-gradient(
+  180deg,
+  transparent,
+  #edf5ff,
+  transparent
+ );
+}
+
+.intro-box {
+ padding: 85px 30px;
+
+ text-align: center;
+
+ border-radius: 40px;
+
+ background: rgba(255,255,255,.7);
+
+ box-shadow:
+ 0 20px 60px rgba(0,0,0,.06);
+}
+
+.intro-box h2 {
+ font-size: clamp(40px,6vw,70px);
+
+ letter-spacing: -.06em;
+}
+
+.intro-box p {
+ max-width: 650px;
+
+ margin: 25px auto 0;
+
+ color: #707070;
+
+ line-height: 1.8;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid {
+ display: grid;
+
+ grid-template-columns:
+ 1fr 1fr;
+
+ gap: 70px;
+
+ align-items: center;
+}
+
+.about h2 {
+ font-size: clamp(45px,6vw,70px);
+
+ letter-spacing: -.06em;
+
+ line-height: 1;
+}
+
+.about p {
+ margin-top: 25px;
+
+ color: #707070;
+
+ font-size: 17px;
+
+ line-height: 1.8;
+}
+
+.about-card {
+ padding: 40px;
+
+ border-radius: 30px;
+
+ background: rgba(255,255,255,.75);
+
+ box-shadow:
+ 0 20px 55px rgba(0,0,0,.06);
+}
+
+.about-card h3 {
+ font-size: 25px;
+}
+
+
+/* =========================
+   FOLLOW
+========================= */
+
+.follow {
+ text-align: center;
+}
+
+.follow h2 {
+ font-size: clamp(45px,7vw,80px);
+
+ letter-spacing: -.07em;
+}
+
+.follow p {
+ margin-top: 20px;
+
+ color: #777;
+}
+
+.follow-buttons {
+ margin-top: 30px;
+
+ display: flex;
+
+ justify-content: center;
+
+ gap: 14px;
+}
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal {
+ opacity: 0;
+
+ transform:
+ translateY(55px)
+ scale(.97);
+
+ filter: blur(5px);
+
+ transition:
+ opacity .8s cubic-bezier(.22,1,.36,1),
+ transform .8s cubic-bezier(.22,1,.36,1),
+ filter .8s ease;
+}
+
+.reveal.visible {
+ opacity: 1;
+
+ transform:
+ translateY(0)
+ scale(1);
+
+ filter: blur(0);
+}
+
+.reveal.from-top {
+ transform:
+ translateY(-55px)
+ scale(.97);
+}
+
+.reveal.from-top.visible {
+ transform:
+ translateY(0)
+ scale(1);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+ padding: 35px 20px;
+
+ text-align: center;
+
+ color: #999;
+
+ border-top: 1px solid #eee;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:800px) {
+
+ .nav {
+  height: 58px;
+  padding: 0 20px;
+ }
+
+ .nav-links {
+  gap: 14px;
+ }
+
+ .nav-links a {
+  font-size: 13px;
+ }
+
+ .hero {
+  padding-left: 18px;
+  padding-right: 18px;
+ }
+
+ .hero h1 {
+  font-size: 17vw;
+ }
+
+ .lead {
+  font-size: 16px;
+ }
+
+ .buttons,
+ .follow-buttons {
+  flex-direction: column;
+  align-items: center;
+ }
+
+ .button {
+  width: min(280px,100%);
+ }
+
+ .cards {
+  grid-template-columns: 1fr;
+ }
+
+ .about-grid {
+  grid-template-columns: 1fr;
+  gap: 40px;
+ }
+
+ section:not(.hero) {
+  padding: 100px 20px;
+ }
+
+}
+
+
+@media (max-width:450px) {
+
+ .nav-logo {
+  font-size: 17px;
+ }
+
+ .nav-links {
+  gap: 10px;
+ }
+
+ .nav-links a {
+  font-size: 12px;
+ }
+
+ .hero h1 {
+  font-size: 18vw;
+ }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAV
+========================= -->
+
+<div class="nav-wrap" id="navWrap">
+
+ <nav class="nav">
+
+  <a href="#home" class="nav-logo">
+    HOOLAP
+  </a>
+
+  <div class="nav-links">
+
+   <a href="#home" class="active">
+    Home
+   </a>
+
+   <a href="#channel">
+    Channel
+   </a>
+
+   <a href="#about">
+    About
+   </a>
+
+  </div>
+
+ </nav>
+
+</div>
+
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section class="hero" id="home">
+
+ <div class="hero-content">
+
+  <div class="badge">
+   ● Apple · Samsung · Tech
+  </div>
+
+  <h1>
+   HOOLAP
+  </h1>
+
+  <p class="lead">
+   Apple과 Samsung을 중심으로
+   스마트폰과 IT 제품의 소식, 팁,
+   비교와 리뷰를 소개하는 테크 채널입니다.
+  </p>
+
+  <div class="buttons">
+
+   <a
+    class="button primary"
+    href="https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr"
+    target="_blank">
+    YouTube 보기
+   </a>
+
+   <a
+    class="button secondary"
+    href="https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr"
+    target="_blank">
+    Instagram 보기
+   </a>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+
+<!-- =========================
+     CHANNEL
+========================= -->
+
+<section id="channel">
+
+ <div class="container">
+
+  <h2 class="section-title reveal">
+   Technology.<br>
+   Simply explained.
+  </h2>
+
+
+  <p class="section-text reveal">
+   복잡한 IT 이야기를 쉽고 깔끔하게.
+   최신 스마트폰부터 다양한 테크 제품까지
+   HOOLAP의 시선으로 소개합니다.
+  </p>
+
+
+  <div class="cards">
+
+
+   <div class="card reveal">
+
+    <div>
+
+     <div class="icon">
+      ▶
+     </div>
+
+     <h3>
+      YouTube
+     </h3>
+
+     <p>
+      최신 스마트폰과 IT 제품의
+      정보와 비교, 리뷰를 영상으로 만나보세요.
+     </p>
+
+    </div>
+
+
+    <a
+     class="button primary"
+     href="https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr"
+     target="_blank">
+     채널 보기
+    </a>
+
+   </div>
+
+
+
+   <div class="card reveal">
+
+    <div>
+
+     <div class="icon">
+      ◎
+     </div>
+
+     <h3>
+      Instagram
+     </h3>
+
+     <p>
+      빠르게 확인하는 테크 소식과
+      새로운 콘텐츠를 만나보세요.
+     </p>
+
+    </div>
+
+
+    <a
+     class="button secondary"
+     href="https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr"
+     target="_blank">
+     Instagram 보기
+    </a>
+
+   </div>
+
+
+
+   <div class="card reveal">
+
+    <div>
+
+     <div class="icon">
+      
+     </div>
+
+     <h3>
+      Tech Focus
+     </h3>
+
+     <p>
+      Apple, Samsung을 비롯한
+      다양한 IT 제품의 핵심을 알아봅니다.
+     </p>
+
+    </div>
+
+
+    <a
+     class="button secondary"
+     href="#about">
+     자세히 보기
+    </a>
+
+   </div>
+
+
+  </div>
+
+ </div>
+
+</section>
+
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="intro">
+
+ <div class="container">
+
+  <div class="intro-box reveal">
+
+   <h2>
+    Stay curious.<br>
+    Stay connected.
+   </h2>
+
+   <p>
+    새로운 기술은 계속 등장합니다.
+    HOOLAP과 함께 최신 IT 트렌드를
+    쉽고 재미있게 알아보세요.
+   </p>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+ <div class="container">
+
+  <div class="about-grid">
+
+
+   <div class="reveal">
+
+    <h2>
+     About<br>
+     HOOLAP.
+    </h2>
+
+    <p>
+     HOOLAP은 Apple과 Samsung을 비롯한
+     다양한 IT 제품을 다루는 테크 채널입니다.
+     제품의 특징부터 실제 사용에 도움이 되는
+     팁과 비교까지 쉽고 깔끔하게 전달합니다.
+    </p>
+
+   </div>
+
+
+   <div class="about-card reveal">
+
+    <h3>
+     Apple · Samsung · Tech
+    </h3>
+
+    <p>
+     스마트폰, 태블릿, 스마트워치,
+     컴퓨터와 다양한 IT 기술을 재미있게 알아봅니다.
+     <br><br>
+     새로운 제품과 기술을 발견하고
+     필요한 정보를 빠르게 전달합니다.
+    </p>
+
+   </div>
+
+
+  </div>
+
+ </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOLLOW
+========================= -->
+
+<section class="follow">
+
+ <div class="container">
+
+  <h2 class="reveal">
+   Follow HOOLAP.
+  </h2>
+
+
+  <p class="reveal">
+   새로운 테크 콘텐츠를 가장 먼저 만나보세요.
+  </p>
+
+
+  <div class="follow-buttons reveal">
+
+
+   <a
+    class="button primary"
+    href="https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr"
+    target="_blank">
+    YouTube
+   </a>
+
+
+   <a
+    class="button secondary"
+    href="https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr"
+    target="_blank">
+    Instagram
+   </a>
+
+
+  </div>
+
+ </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+ © 2026 HOOLAP. All rights reserved.
+</footer>
+
+
+
+<script>
+
+
+/* =========================
+   HOME 처음 들어올 때 애니메이션
+========================= */
+
+window.addEventListener("load", function() {
+
+ const hero = document.querySelector(".hero");
+
+ setTimeout(function() {
+
+  hero.classList.add("start");
+
+ }, 120);
+
+});
+
+
+
+/* =========================
+   스크롤 방향
+========================= */
+
+let lastScroll = window.scrollY;
+
+let direction = "down";
+
+
+window.addEventListener("scroll", function() {
+
+ const currentScroll = window.scrollY;
+
+
+ if (currentScroll > lastScroll) {
+
+  direction = "down";
+
+ }
+
+
+ if (currentScroll < lastScroll) {
+
+  direction = "up";
+
+ }
+
+
+ lastScroll = currentScroll;
+
+});
+
+
+
+/* =========================
+   상단 메뉴 축소 / 확대
+========================= */
+
+const navWrap =
+ document.getElementById("navWrap");
+
+
+window.addEventListener("scroll", function() {
+
+ if (
+  window.scrollY > 70 &&
+  direction === "down"
+ ) {
+
+  navWrap.classList.add("compact");
+
+ } else {
+
+  navWrap.classList.remove("compact");
+
+ }
+
+});
+
+
+
+/* =========================
+   스크롤 애니메이션
+========================= */
+
+const reveals =
+ document.querySelectorAll(".reveal");
+
+
+const observer =
+ new IntersectionObserver(function(entries) {
+
+  entries.forEach(function(entry) {
+
+   if (entry.isIntersecting) {
+
+    if (direction === "up") {
+
+     entry.target.classList.add("from-top");
+
+    } else {
+
+     entry.target.classList.remove("from-top");
+
+    }
+
+
+    entry.target.classList.add("visible");
+
+   } else {
+
+    entry.target.classList.remove("visible");
+
+   }
+
+  });
+
+ }, {
+
+  threshold: 0.15
+
+ });
+
+
+
+reveals.forEach(function(element) {
+
+ observer.observe(element);
+
+});
+
+
+
+/* =========================
+   메뉴 클릭 시 파란색
+========================= */
+
+const links =
+ document.querySelectorAll(".nav-links a");
+
+
+links.forEach(function(link) {
+
+ link.addEventListener("click", function() {
+
+  links.forEach(function(item) {
+
+   item.classList.remove("active");
+
+  });
+
+
+  link.classList.add("active");
+
+ });
+
+});
+
+
+
+/* =========================
+   현재 섹션에 따라 메뉴 색상 변경
+========================= */
+
+const sections =
+ document.querySelectorAll("section[id]");
+
+
+const sectionObserver =
+ new IntersectionObserver(function(entries) {
+
+  entries.forEach(function(entry) {
+
+   if (entry.isIntersecting) {
+
+    links.forEach(function(link) {
+
+     link.classList.remove("active");
+
+    });
+
+
+    const active =
+     document.querySelector(
+      '.nav-links a[href="#' +
+      entry.target.id +
+      '"]'
+     );
+
+
+    if (active) {
+
+     active.classList.add("active");
+
+    }
+
+   }
+
+  });
+
+ }, {
+
+  threshold: 0.45
+
+ });
+
+
+
+sections.forEach(function(section) {
+
+ sectionObserver.observe(section);
+
+});
+
+
+</script>
+
+
+</body>
+</html>
