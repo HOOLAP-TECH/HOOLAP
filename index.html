@@ -3,47 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HOOLAP — Technology</title>
 
-  /* 페이지 처음 진입 애니메이션 */
-.badge,
-.hero h1,
-.hero .lead,
-.hero .buttons{
-  opacity:0;
-  transform:translateY(35px);
-  animation:heroTextUp 0.9s cubic-bezier(.22,1,.36,1) forwards;
-}
+<title>HOOLAP — Technology, Simply Explained.</title>
 
-.badge{
-  animation-delay:0.1s;
-}
-
-.hero h1{
-  animation-delay:0.25s;
-}
-
-.hero .lead{
-  animation-delay:0.4s;
-}
-
-.hero .buttons{
-  animation-delay:0.55s;
-}
-
-@keyframes heroTextUp{
-  from{
-    opacity:0;
-    transform:translateY(35px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
 <style>
+
+/* ==================================================
+   RESET
+================================================== */
+
 *{
+  margin:0;
+  padding:0;
   box-sizing:border-box;
 }
 
@@ -52,452 +23,1097 @@ html{
 }
 
 body{
-  margin:0;
-  color:#1d1d1f;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
-  "Segoe UI",sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  color:#111;
+
   background:
-    radial-gradient(circle at 12% 8%,rgba(90,200,250,.28),transparent 28%),
-    radial-gradient(circle at 88% 24%,rgba(175,82,222,.18),transparent 30%),
-    #f5f5f7;
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(0,122,255,.10),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f7f8fa 45%,
+      #ffffff 100%
+    );
+
   overflow-x:hidden;
 }
 
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+section{
+  scroll-margin-top:120px;
+}
+
+
+/* ==================================================
+   NAVIGATION
+================================================== */
+
 .nav{
   position:fixed;
+
   top:18px;
   left:50%;
+
   transform:translateX(-50%);
-  z-index:10;
-  width:min(92%,920px);
-  height:58px;
-  padding:0 20px;
+
+  width:min(960px,calc(100% - 30px));
+
+  padding:14px 20px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
-  border:1px solid rgba(255,255,255,.7);
+
   background:rgba(255,255,255,.72);
-  backdrop-filter:blur(24px);
-  border-radius:30px;
-  box-shadow:0 12px 45px #00000018;
+
+  border:1px solid rgba(0,0,0,.07);
+
+  border-radius:22px;
+
+  backdrop-filter:
+    blur(25px)
+    saturate(180%);
+
+  -webkit-backdrop-filter:
+    blur(25px)
+    saturate(180%);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,.07);
+
+  z-index:9999;
+
+  transition:
+    width .45s cubic-bezier(.22,1,.36,1),
+    padding .45s cubic-bezier(.22,1,.36,1),
+    top .45s cubic-bezier(.22,1,.36,1),
+    border-radius .45s cubic-bezier(.22,1,.36,1),
+    box-shadow .45s cubic-bezier(.22,1,.36,1);
+}
+
+.nav.compact{
+  top:9px;
+
+  width:min(760px,calc(100% - 40px));
+
+  padding:9px 15px;
+
+  border-radius:18px;
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.09);
 }
 
 .logo{
+  font-size:19px;
   font-weight:700;
-  font-size:17px;
+
+  letter-spacing:-.7px;
+
+  white-space:nowrap;
+
+  transition:
+    font-size .4s cubic-bezier(.22,1,.36,1);
 }
 
-.logo span{
-  color:#007aff;
+.nav.compact .logo{
+  font-size:16px;
 }
 
-.nav a{
-  color:#1d1d1f;
-  text-decoration:none;
+.nav-links{
+  display:flex;
+  align-items:center;
+
+  gap:5px;
+}
+
+.nav-links a{
+  padding:8px 13px;
+
+  border-radius:12px;
+
+  color:#111;
+
   font-size:14px;
-  font-weight:600;
-  margin:0 9px;
-  transition:.2s;
+  font-weight:500;
+
+  transition:
+    color .25s ease,
+    background .25s ease,
+    transform .25s ease;
 }
 
-.nav a:hover,
-.nav a.active{
+.nav-links a:hover{
+  color:#007aff;
+  background:rgba(0,122,255,.07);
+}
+
+.nav-links a.active{
   color:#007aff;
 }
+
+.nav-links a:active{
+  transform:scale(.93);
+}
+
+
+/* ==================================================
+   CONTAINER
+================================================== */
+
+.container{
+  width:min(1100px,calc(100% - 40px));
+  margin:0 auto;
+}
+
+
+/* ==================================================
+   HOME
+================================================== */
 
 .hero{
   min-height:100vh;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  padding:120px 20px 80px;
-}
 
-.content{
-  max-width:900px;
-}
-
-.badge{
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-  padding:9px 14px;
-  border-radius:999px;
-  background:#ffffffa6;
-  border:1px solid #00000012;
-  color:#4b4b50;
-  font-size:13px;
-}
-
-.dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#30d158;
-  box-shadow:0 0 14px #30d158;
-}
-
-h1{
-  margin:24px auto 18px;
-  font-size:clamp(40px,7vw,82px);
-  line-height:1.08;
-  letter-spacing:-.025em;
-  background:linear-gradient(120deg,#111,#007aff 52%,#af52de);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.lead{
-  max-width:650px;
-  margin:auto;
-  color:#6e6e73;
-  font-size:18px;
-  line-height:1.7;
-}
-
-.buttons{
   display:flex;
+  align-items:center;
   justify-content:center;
+
+  text-align:center;
+
+  padding:
+    170px 20px
+    100px;
+
+  overflow:hidden;
+}
+
+.hero-content{
+  width:100%;
+  max-width:1150px;
+}
+
+
+/*
+   Home은 처음부터 숨겨져 있다가
+   페이지가 완전히 로드된 후
+   순서대로 나타남
+*/
+
+.hero-badge,
+.hero-title,
+.hero-description,
+.hero-buttons{
+  opacity:0;
+
+  transform:
+    translate3d(0,45px,0)
+    scale(.96);
+
+  filter:blur(8px);
+}
+
+
+/* ==================================================
+   HOME INTRO ANIMATION
+================================================== */
+
+.hero.home-start .hero-badge{
+  animation:
+    homeIn
+    .85s
+    cubic-bezier(.22,1,.36,1)
+    .10s
+    forwards;
+}
+
+.hero.home-start .hero-title{
+  animation:
+    homeIn
+    1s
+    cubic-bezier(.22,1,.36,1)
+    .18s
+    forwards;
+}
+
+.hero.home-start .hero-description{
+  animation:
+    homeIn
+    .9s
+    cubic-bezier(.22,1,.36,1)
+    .32s
+    forwards;
+}
+
+.hero.home-start .hero-buttons{
+  animation:
+    homeIn
+    .9s
+    cubic-bezier(.22,1,.36,1)
+    .44s
+    forwards;
+}
+
+
+/* Home 다시 올라왔을 때 */
+
+.hero.home-replay .hero-badge{
+  animation:
+    homeIn
+    .85s
+    cubic-bezier(.22,1,.36,1)
+    .05s
+    forwards;
+}
+
+.hero.home-replay .hero-title{
+  animation:
+    homeIn
+    1s
+    cubic-bezier(.22,1,.36,1)
+    .13s
+    forwards;
+}
+
+.hero.home-replay .hero-description{
+  animation:
+    homeIn
+    .9s
+    cubic-bezier(.22,1,.36,1)
+    .27s
+    forwards;
+}
+
+.hero.home-replay .hero-buttons{
+  animation:
+    homeIn
+    .9s
+    cubic-bezier(.22,1,.36,1)
+    .39s
+    forwards;
+}
+
+
+.hero-badge{
+  display:inline-flex;
+
+  padding:9px 15px;
+
+  margin-bottom:24px;
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.82);
+
+  border:
+    1px solid rgba(0,0,0,.07);
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.05);
+
+  font-size:13px;
+  font-weight:600;
+
+  color:#555;
+}
+
+.hero-title{
+  width:100%;
+
+  font-size:
+    clamp(58px,13vw,160px);
+
+  line-height:.92;
+
+  letter-spacing:-.075em;
+
+  font-weight:800;
+
+  white-space:nowrap;
+
+  color:#111;
+}
+
+.hero-description{
+  margin:30px auto 0;
+
+  max-width:650px;
+
+  font-size:
+    clamp(17px,2.2vw,23px);
+
+  line-height:1.55;
+
+  color:#6e6e73;
+
+  letter-spacing:-.025em;
+}
+
+.hero-buttons{
+  margin-top:35px;
+
+  display:flex;
+
+  justify-content:center;
+
   gap:12px;
-  margin-top:30px;
+
   flex-wrap:wrap;
 }
 
-button{
-  border:0;
+
+/* ==================================================
+   BUTTON
+================================================== */
+
+.btn{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  min-width:145px;
+
+  padding:14px 21px;
+
   border-radius:999px;
-  padding:14px 22px;
+
   font-size:15px;
   font-weight:600;
-  cursor:pointer;
-  min-height:48px;
-  color:white;
-  background:#007aff;
-  box-shadow:0 8px 30px #007aff59;
-  transition:.25s;
+
+  transition:
+    transform .3s cubic-bezier(.22,1,.36,1),
+    box-shadow .3s ease,
+    background .3s ease;
 }
 
-button:hover{
+.btn:hover{
   transform:translateY(-3px);
 }
 
-button.secondary{
-  background:#ffffffb8;
-  border:1px solid #00000012;
-  box-shadow:none;
-  color:#1d1d1f;
+.btn:active{
+  transform:scale(.95);
 }
 
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  max-width:1050px;
-  margin:0 auto 100px;
-  padding:0 20px;
+.btn-primary{
+  color:#fff;
+
+  background:#007aff;
+
+  box-shadow:
+    0 10px 25px rgba(0,122,255,.25);
 }
 
-.card{
-  min-height:240px;
-  padding:26px;
-  border-radius:28px;
-  background:#ffffffad;
-  border:1px solid #00000012;
-  backdrop-filter:blur(22px);
-  box-shadow:0 20px 70px #0000001a;
-  transition:.4s;
+.btn-primary:hover{
+  box-shadow:
+    0 15px 35px rgba(0,122,255,.32);
 }
 
-.card:hover{
-  transform:translateY(-8px);
+.btn-secondary{
+  color:#111;
+
+  background:
+    rgba(255,255,255,.8);
+
+  border:
+    1px solid rgba(0,0,0,.08);
 }
 
-.icon{
-  font-size:36px;
-  margin-bottom:20px;
+
+/* ==================================================
+   SCROLL REVEAL
+================================================== */
+
+.reveal{
+  opacity:0;
+
+  transform:
+    translate3d(0,70px,0)
+    scale(.97);
+
+  filter:blur(6px);
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+
+  transition:
+    opacity .75s cubic-bezier(.22,1,.36,1),
+    transform .85s cubic-bezier(.22,1,.36,1),
+    filter .75s cubic-bezier(.22,1,.36,1);
 }
 
-.card h2{
-  font-size:20px;
+
+/* 아래로 스크롤 → 아래에서 위 */
+
+.reveal.from-bottom{
+  opacity:1;
+
+  transform:
+    translate3d(0,0,0)
+    scale(1);
+
+  filter:blur(0);
 }
 
-.card p,
-.section-copy{
-  color:#6e6e73;
-  line-height:1.65;
+
+/* 위로 스크롤 → 위에서 아래 */
+
+.reveal.from-top{
+  opacity:1;
+
+  transform:
+    translate3d(0,0,0)
+    scale(1);
+
+  filter:blur(0);
 }
+
+
+/* 아래로 스크롤 → 위로 사라짐 */
+
+.reveal.exit-top{
+  opacity:0;
+
+  transform:
+    translate3d(0,-65px,0)
+    scale(.97);
+
+  filter:blur(6px);
+}
+
+
+/* 위로 스크롤 → 아래로 사라짐 */
+
+.reveal.exit-bottom{
+  opacity:0;
+
+  transform:
+    translate3d(0,65px,0)
+    scale(.97);
+
+  filter:blur(6px);
+}
+
+
+/* ==================================================
+   SECTION
+================================================== */
 
 .section{
-  padding:120px 20px;
-  max-width:1120px;
-  margin:auto;
-  text-align:center;
+  min-height:75vh;
+
+  padding:
+    150px 0;
+
+  display:flex;
+
+  align-items:center;
+}
+
+.section-header{
+  margin-bottom:60px;
 }
 
 .eyebrow{
+  margin-bottom:15px;
+
+  color:#007aff;
+
   font-size:14px;
-  color:#6e6e73;
-  letter-spacing:.08em;
-  margin-bottom:14px;
+  font-weight:700;
+
+  letter-spacing:.02em;
 }
 
-.section h2{
-  font-size:clamp(36px,6vw,68px);
-  line-height:1.08;
+.section-title{
+  font-size:
+    clamp(42px,7vw,78px);
+
+  line-height:1.02;
+
+  letter-spacing:-.055em;
+
+  font-weight:750;
+}
+
+.section-description{
+  max-width:650px;
+
+  margin-top:22px;
+
+  color:#6e6e73;
+
+  font-size:
+    clamp(17px,2vw,21px);
+
+  line-height:1.6;
+}
+
+
+/* ==================================================
+   CHANNEL CARDS
+================================================== */
+
+.cards{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:20px;
+}
+
+.card{
+  min-height:280px;
+
+  padding:30px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+
+  overflow:hidden;
+
+  border-radius:30px;
+
+  background:
+    rgba(255,255,255,.72);
+
+  border:
+    1px solid rgba(0,0,0,.07);
+
+  box-shadow:
+    0 15px 50px rgba(0,0,0,.06);
+
+  transition:
+    transform .5s cubic-bezier(.22,1,.36,1),
+    box-shadow .5s ease;
+}
+
+.card:hover{
+  transform:translateY(-9px);
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.10);
+}
+
+.card-icon{
+  width:52px;
+  height:52px;
+
+  margin-bottom:30px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border-radius:16px;
+
+  background:#f1f2f4;
+
+  font-size:24px;
+}
+
+.card h3{
+  margin-bottom:10px;
+
+  font-size:25px;
+
+  letter-spacing:-.035em;
+}
+
+.card p{
+  color:#6e6e73;
+
+  font-size:15px;
+
+  line-height:1.55;
+}
+
+
+/* ==================================================
+   INTRO
+================================================== */
+
+.intro{
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(0,122,255,.035),
+      transparent
+    );
+}
+
+.intro-box{
+  padding:
+    70px 55px;
+
+  text-align:center;
+
+  border-radius:38px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.92),
+      rgba(245,248,255,.85)
+    );
+
+  border:
+    1px solid rgba(0,0,0,.06);
+
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.07);
+}
+
+.intro-box h2{
+  margin-bottom:22px;
+
+  font-size:
+    clamp(40px,7vw,76px);
+
+  line-height:1;
+
+  letter-spacing:-.06em;
+}
+
+.intro-box p{
+  max-width:700px;
+
+  margin:0 auto;
+
+  color:#6e6e73;
+
+  font-size:18px;
+
+  line-height:1.7;
+}
+
+
+/* ==================================================
+   ABOUT
+================================================== */
+
+.about-grid{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:25px;
+}
+
+.about-box{
+  padding:38px;
+
+  border-radius:30px;
+
+  background:
+    rgba(255,255,255,.75);
+
+  border:
+    1px solid rgba(0,0,0,.07);
+
+  box-shadow:
+    0 15px 50px rgba(0,0,0,.05);
+}
+
+.about-box h3{
+  margin-bottom:15px;
+
+  font-size:27px;
+
   letter-spacing:-.04em;
 }
 
-.feature{
-  margin-top:55px;
-  min-height:450px;
-  border-radius:38px;
-  position:relative;
-  overflow:hidden;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(145deg,#ffffffe6,#ebebf0a6);
-  box-shadow:0 35px 100px #0000001f;
-}
-
-.orb{
-  width:210px;
-  height:210px;
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 30% 25%,#fff 0,#a9e7ff 12%,
-    #007aff 48%,#5e5ce6 75%,#111 100%);
-  box-shadow:0 0 80px #007aff80;
-  animation:float 6s ease-in-out infinite;
-}
-
-.specs{
-  position:absolute;
-  bottom:28px;
-  left:35px;
-  right:35px;
-  display:flex;
-  justify-content:space-between;
+.about-box p{
   color:#6e6e73;
+
+  line-height:1.7;
+}
+
+
+/* ==================================================
+   FOLLOW
+================================================== */
+
+.follow{
+  min-height:70vh;
+
+  text-align:center;
+
+  justify-content:center;
+}
+
+.follow-content{
+  width:100%;
+}
+
+.follow h2{
+  font-size:
+    clamp(48px,8vw,90px);
+
+  line-height:.98;
+
+  letter-spacing:-.065em;
+}
+
+.follow p{
+  margin:25px auto 35px;
+
+  color:#6e6e73;
+
+  font-size:18px;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+footer{
+  padding:
+    45px 20px 60px;
+
+  text-align:center;
+
+  color:#8a8a8f;
+
   font-size:13px;
 }
 
-.specs strong{
-  display:block;
-  color:#1d1d1f;
-  font-size:17px;
-  margin-top:4px;
-}
 
-footer{
-  text-align:center;
-  color:#8e8e93;
-  padding:30px;
-}
+/* ==================================================
+   HOME ANIMATION
+================================================== */
 
-@keyframes float{
-  50%{
-    transform:translateY(-18px) scale(1.04);
+@keyframes homeIn{
+
+  0%{
+    opacity:0;
+
+    transform:
+      translate3d(0,45px,0)
+      scale(.96);
+
+    filter:blur(8px);
   }
+
+  60%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:1;
+
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+
+    filter:blur(0);
+  }
+
 }
+
+
+/* ==================================================
+   MOBILE
+================================================== */
 
 @media(max-width:700px){
 
   .nav{
-    height:54px;
+    top:10px;
+
+    width:
+      calc(100% - 20px);
+
+    padding:
+      11px 13px;
+
+    border-radius:18px;
   }
 
-  .nav a{
-    display:none;
+  .nav.compact{
+    top:7px;
+
+    width:
+      calc(100% - 30px);
+
+    padding:
+      7px 10px;
+
+    border-radius:15px;
   }
 
-  .hero{
-    padding:105px 14px 70px;
-  }
-
-  h1{
-    font-size:clamp(40px,12.5vw,62px);
-  }
-
-  .lead{
+  .logo{
     font-size:16px;
   }
 
-  .cards{
-    grid-template-columns:1fr;
+  .nav-links{
+    gap:1px;
   }
 
-  .section{
-    padding:95px 18px;
+  .nav-links a{
+    padding:
+      7px 8px;
+
+    font-size:11px;
   }
 
-  .specs{
-    left:20px;
-    right:20px;
-    gap:12px;
-    flex-wrap:wrap;
-    justify-content:center;
+
+  .hero{
+    padding:
+      145px 12px
+      80px;
   }
 
-  .specs strong{
+  .hero-title{
+    font-size:
+      clamp(50px,17vw,95px);
+
+    letter-spacing:-.08em;
+  }
+
+  .hero-description{
+    padding:
+      0 12px;
+
+    font-size:16px;
+  }
+
+  .btn{
+    min-width:130px;
+
+    padding:
+      13px 17px;
+
     font-size:14px;
   }
+
+
+  .section{
+    min-height:auto;
+
+    padding:
+      100px 0;
+  }
+
+  .section-header{
+    margin-bottom:38px;
+  }
+
+  .section-title{
+    font-size:
+      clamp(40px,12vw,60px);
+  }
+
+
+  .cards{
+    grid-template-columns:1fr;
+
+    gap:15px;
+  }
+
+  .card{
+    min-height:240px;
+
+    padding:25px;
+
+    border-radius:25px;
+  }
+
+
+  .intro-box{
+    padding:
+      50px 25px;
+
+    border-radius:30px;
+  }
+
+  .intro-box h2{
+    font-size:
+      clamp(38px,11vw,58px);
+  }
+
+  .intro-box p{
+    font-size:16px;
+  }
+
+
+  .about-grid{
+    grid-template-columns:1fr;
+
+    gap:15px;
+  }
+
+  .about-box{
+    padding:28px;
+
+    border-radius:25px;
+  }
+
+
+  .follow{
+    min-height:60vh;
+  }
+
 }
+
+
+/* ==================================================
+   REDUCED MOTION
+================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+  html{
+    scroll-behavior:auto;
+  }
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+
+    animation-iteration-count:1 !important;
+
+    transition-duration:.01ms !important;
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- ==================================================
+     NAV
+================================================== -->
 
 <nav class="nav">
 
-  <div class="logo">
-     <span>HOOLAP</span>
-  </div>
+  <a
+    href="#home"
+    class="logo"
+  >
+     HOOLAP
+  </a>
 
-  <div>
-    <a href="#home" class="active">Home</a>
-    <a href="#features">Channel</a>
-    <a href="#about">About</a>
+
+  <div class="nav-links">
+
+    <a
+      href="#home"
+      class="active"
+    >
+      Home
+    </a>
+
+    <a
+      href="#channel"
+    >
+      Channel
+    </a>
+
+    <a
+      href="#intro"
+    >
+      소개
+    </a>
+
+    <a
+      href="#about"
+    >
+      About
+    </a>
+
   </div>
 
 </nav>
 
 
-<main id="home" class="hero">
 
-  <div class="content">
+<!-- ==================================================
+     HOME
+================================================== -->
 
-    <div class="badge">
-      <span class="dot"></span>
+<section
+  id="home"
+  class="hero"
+>
+
+  <div class="hero-content">
+
+    <div class="hero-badge">
+
       Apple · Samsung · Tech
+
     </div>
 
-    <h1>
-      HOOLAP<br>
-      Technology.
+
+    <h1 class="hero-title">
+
+      HOOLAP
+
     </h1>
 
-    <p class="lead">
-      Apple과 Samsung을 중심으로 스마트폰과 IT 제품의 소식,
-      팁, 비교와 리뷰를 소개하는 테크 채널입니다.
+
+    <p class="hero-description">
+
+      Technology. Simply explained.
+
+      <br>
+
+      애플과 삼성, 그리고 다양한 기술 이야기를
+      쉽고 재미있게.
+
     </p>
 
-    <div class="buttons">
 
-      <button onclick="window.open(
-      'https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr',
-      '_blank')">
-        YouTube 보기
-      </button>
+    <div class="hero-buttons">
 
-      <button class="secondary" onclick="window.open(
-      'https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr',
-      '_blank')">
-        Instagram 보기
-      </button>
-
-    </div>
-
-  </div>
-
-</main>
+      <a
+        class="btn btn-primary"
+        href="https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr"
+        target="_blank"
+        rel="noopener"
+      >
+        YouTube
+      </a>
 
 
-<section id="features" class="cards">
-
-  <article class="card">
-
-    <div class="icon">▶️</div>
-
-    <h2>YouTube</h2>
-
-    <p>
-      새로운 Apple·Samsung 소식과 유용한 IT 팁,
-      제품 비교와 리뷰를 영상으로 만나보세요.
-    </p>
-
-    <button onclick="window.open(
-    'https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr',
-    '_blank')">
-      채널 방문
-    </button>
-
-  </article>
-
-
-  <article class="card">
-
-    <div class="icon">◎</div>
-
-    <h2>Instagram</h2>
-
-    <p>
-      짧고 빠르게 보는 테크 소식과 HOOLAP의
-      다양한 콘텐츠를 확인할 수 있습니다.
-    </p>
-
-    <button onclick="window.open(
-    'https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr',
-    '_blank')">
-      계정 방문
-    </button>
-
-  </article>
-
-
-  <article class="card">
-
-    <div class="icon"></div>
-
-    <h2>Tech Focus</h2>
-
-    <p>
-      깔끔한 디자인과 실제 사용 경험을 바탕으로
-      재미있게 IT 이야기를 전합니다.
-    </p>
-
-  </article>
-
-</section>
-
-
-<section class="section">
-
-  <div class="eyebrow">
-    ABOUT HOOLAP
-  </div>
-
-  <h2>
-    Technology.<br>
-    Simply explained.
-  </h2>
-
-  <p class="section-copy">
-    복잡한 IT 이야기를 깔끔하고 이해하기 쉽게.
-    HOOLAP은 스마트폰과 태블릿, 워치 등
-    다양한 기술 이야기를 소개합니다.
-  </p>
-
-
-  <div class="feature">
-
-    <div class="orb"></div>
-
-    <div class="specs">
-
-      <div>
-        DESIGN
-        <strong>Liquid</strong>
-      </div>
-
-      <div>
-        MOTION
-        <strong>60 FPS feel</strong>
-      </div>
-
-      <div>
-        EXPERIENCE
-        <strong>Intuitive</strong>
-      </div>
+      <a
+        class="btn btn-secondary"
+        href="https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr"
+        target="_blank"
+        rel="noopener"
+      >
+        Instagram
+      </a>
 
     </div>
 
@@ -506,61 +1122,850 @@ footer{
 </section>
 
 
-<section class="section" id="about">
 
-  <div class="eyebrow">
-    FOLLOW HOOLAP
-  </div>
+<!-- ==================================================
+     CHANNEL
+================================================== -->
 
-  <h2>
-    Stay curious.<br>
-    Stay connected.
-  </h2>
+<section
+  id="channel"
+  class="section"
+>
 
-  <p class="section-copy">
-    YouTube에서 영상을 보고,
-    Instagram에서 더 빠른 소식을 만나보세요.
-  </p>
+  <div class="container">
 
-  <div class="buttons">
 
-    <button onclick="window.open(
-    'https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr',
-    '_blank')">
-      YouTube
-    </button>
+    <div class="section-header reveal">
 
-    <button class="secondary" onclick="window.open(
-    'https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr',
-    '_blank')">
-      Instagram
-    </button>
+      <div class="eyebrow">
+        HOOLAP CHANNEL
+      </div>
+
+
+      <h2 class="section-title">
+
+        Tech,<br>
+        without the noise.
+
+      </h2>
+
+
+      <p class="section-description">
+
+        복잡한 기술 이야기를 쉽게 이해할 수 있도록
+        핵심만 정리해서 전달합니다.
+
+      </p>
+
+    </div>
+
+
+
+    <div class="cards">
+
+
+      <a
+        class="card reveal"
+        href="https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <div>
+
+          <div class="card-icon">
+            ▶
+          </div>
+
+          <h3>
+            YouTube
+          </h3>
+
+          <p>
+
+            Apple, Samsung, iOS,
+            스마트폰과 다양한 IT 정보를
+            영상으로 만나보세요.
+
+          </p>
+
+        </div>
+
+      </a>
+
+
+
+      <a
+        class="card reveal"
+        href="https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <div>
+
+          <div class="card-icon">
+            ◎
+          </div>
+
+          <h3>
+            Instagram
+          </h3>
+
+          <p>
+
+            짧고 빠르게 보는
+            기술 소식과 HOOLAP의
+            다양한 콘텐츠.
+
+          </p>
+
+        </div>
+
+      </a>
+
+
+
+      <div class="card reveal">
+
+        <div>
+
+          <div class="card-icon">
+            
+          </div>
+
+          <h3>
+            Tech Focus
+          </h3>
+
+          <p>
+
+            iPhone, iPad, Apple Watch,
+            Galaxy 등 최신 기술을
+            직접 비교하고 알아봅니다.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
 
   </div>
 
 </section>
 
+
+
+<!-- ==================================================
+     INTRO
+================================================== -->
+
+<section
+  id="intro"
+  class="section intro"
+>
+
+  <div class="container">
+
+    <div class="intro-box reveal">
+
+      <div class="eyebrow">
+        WELCOME TO HOOLAP
+      </div>
+
+
+      <h2>
+        Stay curious.
+      </h2>
+
+
+      <p>
+
+        새로운 기술은 계속 등장합니다.
+
+        HOOLAP은 그 변화를 어렵지 않게
+        이해할 수 있도록 쉽고 깔끔하게 설명합니다.
+
+        <br><br>
+
+        궁금했던 기능부터 새로운 제품까지,
+        기술을 더 재미있게 알아가는 공간입니다.
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     ABOUT
+================================================== -->
+
+<section
+  id="about"
+  class="section"
+>
+
+  <div class="container">
+
+
+    <div class="section-header reveal">
+
+      <div class="eyebrow">
+        ABOUT HOOLAP
+      </div>
+
+
+      <h2 class="section-title">
+
+        Technology.<br>
+        Simply explained.
+
+      </h2>
+
+
+      <p class="section-description">
+
+        HOOLAP은 기술을 어렵게 설명하기보다
+        누구나 이해하기 쉽게 전달하는 것을 목표로 합니다.
+
+      </p>
+
+    </div>
+
+
+
+    <div class="about-grid">
+
+
+      <div class="about-box reveal">
+
+        <h3>
+          Apple
+        </h3>
+
+        <p>
+
+          iPhone, iPad, Apple Watch 등
+          Apple 제품의 기능과 새로운 소식을
+          알아봅니다.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="about-box reveal">
+
+        <h3>
+          Samsung
+        </h3>
+
+        <p>
+
+          Galaxy 스마트폰과 태블릿,
+          워치 등 삼성 제품의 기능과
+          기술을 살펴봅니다.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="about-box reveal">
+
+        <h3>
+          Tech
+        </h3>
+
+        <p>
+
+          다양한 IT 기술과 제품을 비교하고
+          실제 사용하면서 느낀 점을
+          쉽고 솔직하게 이야기합니다.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="about-box reveal">
+
+        <h3>
+          HOOLAP
+        </h3>
+
+        <p>
+
+          새로운 기술을 발견하고,
+          직접 사용하고,
+          쉽게 공유합니다.
+
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     FOLLOW
+================================================== -->
+
+<section
+  class="section follow"
+>
+
+  <div class="follow-content">
+
+
+    <div class="eyebrow reveal">
+      FOLLOW HOOLAP
+    </div>
+
+
+    <h2 class="reveal">
+
+      Stay curious.<br>
+      Stay connected.
+
+    </h2>
+
+
+    <p class="reveal">
+
+      새로운 기술 이야기를
+      가장 먼저 만나보세요.
+
+    </p>
+
+
+    <div class="hero-buttons reveal">
+
+      <a
+        class="btn btn-primary"
+        href="https://youtube.com/@hoolap_3?si=briuhdRLtnyRfIEr"
+        target="_blank"
+        rel="noopener"
+      >
+        YouTube
+      </a>
+
+
+      <a
+        class="btn btn-secondary"
+        href="https://www.instagram.com/hoolap_03?igsh=NnFpajdpNTdnamt2&utm_source=qr"
+        target="_blank"
+        rel="noopener"
+      >
+        Instagram
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
 
 <footer>
-  Made for a little experiment · 2026
+
+  © 2026 HOOLAP.
+  Technology, simply explained.
+
 </footer>
+
 
 
 <script>
 
-document.querySelectorAll('.nav a').forEach(a => {
+/* ==================================================
+   HOME — 사이트 진입 애니메이션
+================================================== */
 
-  a.addEventListener('click', () => {
+const home =
+  document.querySelector(".hero");
 
-    document
-      .querySelectorAll('.nav a')
-      .forEach(x => x.classList.remove('active'));
 
-    a.classList.add('active');
+/*
+   페이지가 처음 열렸을 때
+   무조건 Home 애니메이션 시작
 
-  });
+   DOMContentLoaded를 사용해서
+   사이트 진입 직후 바로 실행한다.
+*/
 
-});
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    requestAnimationFrame(
+      () => {
+
+        requestAnimationFrame(
+          () => {
+
+            home.classList.add(
+              "home-start"
+            );
+
+          }
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* ==================================================
+   스크롤 방향
+================================================== */
+
+let lastScrollY =
+  window.scrollY;
+
+let scrollDirection =
+  "down";
+
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    const currentY =
+      window.scrollY;
+
+
+    if(
+      currentY > lastScrollY
+    ){
+
+      scrollDirection =
+        "down";
+
+    }
+    else if(
+      currentY < lastScrollY
+    ){
+
+      scrollDirection =
+        "up";
+
+    }
+
+
+    lastScrollY =
+      currentY;
+
+  },
+  {
+    passive:true
+  }
+);
+
+
+/* ==================================================
+   NAV 크기
+================================================== */
+
+const nav =
+  document.querySelector(".nav");
+
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    const currentY =
+      window.scrollY;
+
+
+    if(
+      scrollDirection === "down" &&
+      currentY > 80
+    ){
+
+      nav.classList.add(
+        "compact"
+      );
+
+    }
+
+
+    if(
+      scrollDirection === "up"
+    ){
+
+      nav.classList.remove(
+        "compact"
+      );
+
+    }
+
+  },
+  {
+    passive:true
+  }
+);
+
+
+/* ==================================================
+   CONTENT REVEAL
+================================================== */
+
+const revealElements =
+  document.querySelectorAll(
+    ".reveal"
+  );
+
+
+const revealObserver =
+  new IntersectionObserver(
+
+    (entries) => {
+
+      entries.forEach(
+        (entry) => {
+
+          const element =
+            entry.target;
+
+
+          if(
+            entry.isIntersecting
+          ){
+
+            /*
+              아래로 스크롤:
+              아래 → 위
+            */
+
+            if(
+              scrollDirection === "down"
+            ){
+
+              element.classList.remove(
+                "exit-top",
+                "exit-bottom",
+                "from-top"
+              );
+
+              element.classList.add(
+                "from-bottom"
+              );
+
+            }
+
+
+            /*
+              위로 스크롤:
+              위 → 아래
+            */
+
+            else{
+
+              element.classList.remove(
+                "exit-top",
+                "exit-bottom",
+                "from-bottom"
+              );
+
+              element.classList.add(
+                "from-top"
+              );
+
+            }
+
+          }
+
+
+          else{
+
+            const rect =
+              element.getBoundingClientRect();
+
+
+            /*
+              아래로 내려갈 때
+              화면 위쪽으로 사라짐
+            */
+
+            if(
+              scrollDirection === "down" &&
+              rect.bottom < 0
+            ){
+
+              element.classList.remove(
+                "from-bottom",
+                "from-top"
+              );
+
+              element.classList.add(
+                "exit-top"
+              );
+
+            }
+
+
+            /*
+              위로 올라갈 때
+              화면 아래쪽으로 사라짐
+            */
+
+            else if(
+              scrollDirection === "up" &&
+              rect.top > window.innerHeight
+            ){
+
+              element.classList.remove(
+                "from-bottom",
+                "from-top"
+              );
+
+              element.classList.add(
+                "exit-bottom"
+              );
+
+            }
+
+          }
+
+        }
+      );
+
+    },
+
+    {
+      threshold:.12,
+
+      rootMargin:
+        "-50px 0px -80px 0px"
+    }
+
+  );
+
+
+revealElements.forEach(
+  (element) => {
+
+    revealObserver.observe(
+      element
+    );
+
+  }
+);
+
+
+/* ==================================================
+   HOME 재진입 애니메이션
+================================================== */
+
+let homeWasVisible =
+  true;
+
+
+const homeObserver =
+  new IntersectionObserver(
+
+    (entries) => {
+
+      entries.forEach(
+        (entry) => {
+
+          /*
+             Home에서 멀어짐
+          */
+
+          if(
+            !entry.isIntersecting
+          ){
+
+            homeWasVisible =
+              false;
+
+          }
+
+
+          /*
+             아래에서 위로 Home에 다시 들어옴
+          */
+
+          else if(
+            !homeWasVisible &&
+            scrollDirection === "up"
+          ){
+
+            homeWasVisible =
+              true;
+
+
+            home.classList.remove(
+              "home-start",
+              "home-replay"
+            );
+
+
+            /*
+               브라우저가 기존 애니메이션을
+               확실히 초기화하도록 강제
+            */
+
+            void home.offsetWidth;
+
+
+            home.classList.add(
+              "home-replay"
+            );
+
+          }
+
+        }
+      );
+
+    },
+
+    {
+      threshold:.35
+    }
+
+  );
+
+
+homeObserver.observe(home);
+
+
+/* ==================================================
+   NAV ACTIVE
+================================================== */
+
+const sections =
+  document.querySelectorAll(
+    "section[id]"
+  );
+
+const navLinks =
+  document.querySelectorAll(
+    ".nav-links a"
+  );
+
+
+const sectionObserver =
+  new IntersectionObserver(
+
+    (entries) => {
+
+      entries.forEach(
+        (entry) => {
+
+          if(
+            entry.isIntersecting
+          ){
+
+            const id =
+              entry.target.id;
+
+
+            navLinks.forEach(
+              (link) => {
+
+                link.classList.remove(
+                  "active"
+                );
+
+
+                if(
+                  link.getAttribute("href")
+                  === "#" + id
+                ){
+
+                  link.classList.add(
+                    "active"
+                  );
+
+                }
+
+              }
+            );
+
+          }
+
+        }
+      );
+
+    },
+
+    {
+      threshold:.35
+    }
+
+  );
+
+
+sections.forEach(
+  (section) => {
+
+    sectionObserver.observe(
+      section
+    );
+
+  }
+);
+
+
+/* ==================================================
+   NAV 클릭
+================================================== */
+
+navLinks.forEach(
+  (link) => {
+
+    link.addEventListener(
+      "click",
+      () => {
+
+        navLinks.forEach(
+          (item) => {
+
+            item.classList.remove(
+              "active"
+            );
+
+          }
+        );
+
+
+        link.classList.add(
+          "active"
+        );
+
+      }
+    );
+
+  }
+);
 
 </script>
 
