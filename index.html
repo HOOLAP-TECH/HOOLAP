@@ -5,6 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HOOLAP — Technology</title>
 
+  /* 페이지 처음 진입 애니메이션 */
+.badge,
+.hero h1,
+.hero .lead,
+.hero .buttons{
+  opacity:0;
+  transform:translateY(35px);
+  animation:heroTextUp 0.9s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.badge{
+  animation-delay:0.1s;
+}
+
+.hero h1{
+  animation-delay:0.25s;
+}
+
+.hero .lead{
+  animation-delay:0.4s;
+}
+
+.hero .buttons{
+  animation-delay:0.55s;
+}
+
+@keyframes heroTextUp{
+  from{
+    opacity:0;
+    transform:translateY(35px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
 <style>
 *{
   box-sizing:border-box;
